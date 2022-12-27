@@ -20,21 +20,14 @@ public class RtTask6Application {
 	}
 
 	@GetMapping("/greeting")
-	public String greeting(@RequestParam(value="country", defaultValue = "World")String country){
+	public String greeting(@RequestParam(value="country")String country){
 
-		String greet = country;
-
-		if(country.equals("japan")){
-			greet = "Japan";
-		} else if(country.equals("us")) {
-			greet = "America";
-		} else if (country.equals("france")) {
-			greet = "France";
-		} else if (country.equals("korea")) {
-			greet = "Korea";
-		}
-
-		return String.format("Hello %s!",greet);
+		return switch (country) {
+			case "japan" -> "Hello Japan!";
+			case "us" -> "Hello America!";
+			case "france" -> "Hello France!";
+			case "korea" -> "Hello Korea!";
+			default -> "Hello World!";
+		};
 	}
-
 }
