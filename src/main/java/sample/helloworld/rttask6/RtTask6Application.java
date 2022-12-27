@@ -15,7 +15,26 @@ public class RtTask6Application {
 	}
 
 	@GetMapping("/")
-	public String hello(@RequestParam(value = "name", defaultValue = "World")String name){
-		return String.format("Hello %s!", name);
+	public String hello(){
+		return "Hello World!";
 	}
+
+	@GetMapping("/greeting")
+	public String greeting(@RequestParam(value="country", defaultValue = "World")String country){
+
+		String greet = country;
+
+		if(country.equals("japan")){
+			greet = "Japan";
+		} else if(country.equals("us")) {
+			greet = "America";
+		} else if (country.equals("france")) {
+			greet = "France";
+		} else if (country.equals("korea")) {
+			greet = "Korea";
+		}
+
+		return String.format("Hello %s!",greet);
+	}
+
 }
