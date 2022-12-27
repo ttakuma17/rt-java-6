@@ -19,9 +19,7 @@ public class RtTask6Application {
 		return "Hello World!";
 	}
 
-	@GetMapping("/greeting")
-	public String greeting(@RequestParam(value="country")String country){
-
+	public static String greetCountry(String country){
 		return switch (country) {
 			case "japan" -> "Hello Japan!";
 			case "us" -> "Hello America!";
@@ -29,5 +27,10 @@ public class RtTask6Application {
 			case "korea" -> "Hello Korea!";
 			default -> "Hello World!";
 		};
+	}
+
+	@GetMapping("/greeting")
+	public String greeting(@RequestParam(value="country")String country){
+		return greetCountry(country);
 	}
 }
