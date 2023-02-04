@@ -28,4 +28,19 @@ public class RtTask6Application {
 		DateTimeFormatter jptime = DateTimeFormatter.ofPattern("yyyy 年 MM 月 dd 日 hh 時 mm 分");
 		return "現在は" + now.format(jptime) + "です";
 	}
+
+	public static String greetCountry(String country){
+		return switch (country) {
+			case "japan" -> "Hello Japan!";
+			case "us" -> "Hello America!";
+			case "france" -> "Hello France!";
+			case "korea" -> "Hello Korea!";
+			default -> "Hello World!";
+		};
+	}
+
+	@GetMapping("/greeting")
+	public String greeting(@RequestParam(value="country")String country){
+		return greetCountry(country);
+	}
 }
