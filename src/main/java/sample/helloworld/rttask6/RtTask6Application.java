@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @SpringBootApplication
 @RestController
 public class RtTask6Application {
@@ -16,7 +19,14 @@ public class RtTask6Application {
 
 	@GetMapping("/")
 	public String hello(){
-		return "Hello World!";
+		return "Hello World !";
+	}
+
+	@GetMapping("/time")
+	public String showCurrentTime(){
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter jptime = DateTimeFormatter.ofPattern("yyyy 年 MM 月 dd 日 hh 時 mm 分");
+		return "現在は" + now.format(jptime) + "です";
 	}
 
 	public static String greetCountry(String country){
